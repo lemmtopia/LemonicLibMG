@@ -1,0 +1,2 @@
+# LemonicLibMG
+My MonoGame library
