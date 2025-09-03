@@ -15,37 +15,37 @@ namespace LemonicLic.Graphics;
 public class TextureAtlas
 {
     public Texture2D Texture;
-    private Dictionary<string, TextureRegion> Regions;
+    private Dictionary<string, TextureRegion> _regions;
 
     public TextureAtlas()
     {
-        Regions = new Dictionary<string, TextureRegion>();
+        _regions = new Dictionary<string, TextureRegion>();
     }
 
     public TextureAtlas(Texture2D texture)
     {
         Texture = texture;
-        Regions = new Dictionary<string, TextureRegion>();
+        _regions = new Dictionary<string, TextureRegion>();
     }
 
     public TextureRegion GetRegion(string name)
     {
-        return Regions[name];
+        return _regions[name];
     }
 
     public void AddRegion(string name, TextureRegion region)
     {
-        Regions.Add(name, region);
+        _regions.Add(name, region);
     }
 
     public bool RemoveRegion(string name)
     {
-        return Regions.Remove(name);
+        return _regions.Remove(name);
     }
 
     public void Clear()
     {
-        Regions.Clear();
+        _regions.Clear();
     }
 
     public static TextureAtlas FromFile(ContentManager content, string fileName)

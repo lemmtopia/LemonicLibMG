@@ -11,7 +11,8 @@ namespace Playground;
 
 public class Game1 : Core
 {
-    TextureRegion Player;
+    private TextureRegion _player;
+    private Vector2 _playerPosition;
 
     public Game1() : base(800, 600, "Vida lokaaa", false)
     {
@@ -23,6 +24,8 @@ public class Game1 : Core
         // TODO: Add your initialization logic here
 
         base.Initialize();
+
+        _playerPosition = new Vector2(40, 40);
     }
 
     protected override void LoadContent()
@@ -31,17 +34,31 @@ public class Game1 : Core
 
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "Images/Atlas-Definitions.xml");
 
-        Player = atlas.GetRegion("Slime-1");
+        _player = atlas.GetRegion("Slime-1");
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // TODO: Add your update logic here
 
         base.Update(gameTime);
+
+        if (Input.Keyboard.IsKeyDown(Keys.D))
+        {
+            _playerPosition.X += 5;
+        }
+        else if (Input.Keyboard.IsKeyDown(Keys.A))
+        {
+            _playerPosition.X -= 5;
+        }
+        else if (Input.Keyboard.IsKeyDown(Keys.S))
+        {
+            _playerPosition.Y += 5;
+        }
+        else if (Input.Keyboard.IsKeyDown(Keys.W))
+        {
+            _playerPosition.Y -= 5;
+        }
     }
 
     protected override void Draw(GameTime gameTime)
@@ -50,7 +67,7 @@ public class Game1 : Core
 
         // TODO: Add your drawing code here
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
-        Player.Draw(SpriteBatch, new Vector2(40, 40), Color.White, 0, Vector2.Zero, new Vector2(4, 4), SpriteEffects.None, 1);
+        _player.Draw(SpriteBatch, _playerPosition, Color.White, 0, Vector2.Zero, new Vector2(4, 4), SpriteEffects.None, 1);
         SpriteBatch.End();
 
         base.Draw(gameTime);

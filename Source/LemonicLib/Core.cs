@@ -1,8 +1,11 @@
 ﻿using System;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+
+using LemonicLib.Input;
+
 
 namespace LemonicLib;
 
@@ -10,10 +13,13 @@ public class Core : Game
 {
     public static Core Instance;
 
-    protected GraphicsDeviceManager Graphics;
-    protected new GraphicsDevice GraphicsDevice;
-    protected SpriteBatch SpriteBatch;
-    protected new ContentManager Content;
+    public GraphicsDeviceManager Graphics;
+    public new GraphicsDevice GraphicsDevice;
+    public SpriteBatch SpriteBatch;
+    public new ContentManager Content;
+    public InputManager Input;
+
+    public bool ExitOnEscape;
 
     public Core(int width, int height, string title, bool fullScreen)
     {
@@ -41,6 +47,12 @@ public class Core : Game
 
         // Mouse is visible by default.
         IsMouseVisible = true;
+
+        // InputManager
+        Input = new InputManager();
+
+        // ExitOnEscape
+        ExitOnEscape = true;
     }
 
     protected override void Initialize()
@@ -52,5 +64,17 @@ public class Core : Game
 
         // SpriteBatch creation
         SpriteBatch = new SpriteBatch(GraphicsDevice);
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+
+        Input.Update(gameTime);
+
+        if (ExitOnEscape && Input.Keyboard.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
+        {
+            Exit();
+        }
     }
 }
