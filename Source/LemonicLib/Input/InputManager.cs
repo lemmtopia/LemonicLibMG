@@ -7,11 +7,13 @@ namespace LemonicLib.Input;
 public class InputManager
 {
     public KeyboardInfo Keyboard;
+    public MouseInfo Mouse;
     public GamePadInfo[] GamePads;
 
     public InputManager()
     {
         Keyboard = new KeyboardInfo();
+        Mouse = new MouseInfo();
 
         GamePads = new GamePadInfo[4];
         for (int i = 0; i < 4; i++)
@@ -23,6 +25,7 @@ public class InputManager
     public void Update(GameTime gameTime)
     {
         Keyboard.Update();
+        Mouse.Update();
 
         for (int i = 0; i < 4; i++)
         {

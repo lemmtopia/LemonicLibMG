@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 
 using LemonicLib;
 using LemonicLib.Graphics;
-using LemonicLic.Graphics;
 using System;
 
 namespace Playground;

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace LemonicLic.Graphics;
+namespace LemonicLib.Graphics;
 
 public class TextureAtlas
 {
