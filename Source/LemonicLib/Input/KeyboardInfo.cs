@@ -11,7 +11,7 @@ public class KeyboardInfo
     public void KeyboatdInfo()
     {
         _previousState = new KeyboardState();
-        _currentState = new KeyboardState();
+        _currentState = Keyboard.GetState();
     }
 
     public void Update()
